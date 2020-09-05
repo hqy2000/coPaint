@@ -4,7 +4,7 @@ import (
 	"coPaint/config"
 	"coPaint/model"
 	"github.com/gin-gonic/gin"
-
+	"strconv"
 )
 
 func Default(c *gin.Context) {
@@ -14,19 +14,33 @@ func Default(c *gin.Context) {
 	})
 }
 
+func filter(vs []model.Painting, f func(model.Painting) bool) []model.Painting {
+	vsf := make([]model.Painting, 0)
+	for _, v := range vs {
+		if f(v) {
+			vsf = append(vsf, v)
+		}
+	}
+	return vsf
+}
+
 func List(c *gin.Context) {
+	ID, _ := strconv.Atoi(c.Param("paintingId"))
+
 	c.JSON(200, gin.H{
 		"code": 200,
-		"data": config.Paintings,
+		"data": filter(config.Paintings, func(painting model.Painting) bool {
+			return painting.PaintingID == ID
+		}),
 	})
 }
 
 func Upload(c *gin.Context) {
 	image := c.PostForm("image")
+	ID, _ := strconv.Atoi(c.PostForm("paintingId"))
 	painting := model.Painting{
-		ID: 2,
-		Name: "lang.java.NullPointerException",
 		Image: image,
+		PaintingID: ID,
 	}
 	config.Paintings = append(config.Paintings, painting)
 }

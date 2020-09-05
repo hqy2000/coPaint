@@ -27,7 +27,6 @@ type User struct {
 }
 
 type Painting struct {
-	ID uint8 `json:"id"`
-	Name string `json:"name"`
+	PaintingID int `json:"paintingId"`
 	Image string `json:"image"`
 }
