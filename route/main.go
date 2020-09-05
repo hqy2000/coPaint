@@ -3,6 +3,7 @@ package route
 import (
 	"coPaint/config"
 	"coPaint/model"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
@@ -26,6 +27,7 @@ func filter(vs []model.Painting, f func(model.Painting) bool) []model.Painting {
 
 func List(c *gin.Context) {
 	ID, _ := strconv.Atoi(c.Param("paintingId"))
+	fmt.Println(ID)
 
 	c.JSON(200, gin.H{
 		"code": 200,
@@ -37,6 +39,7 @@ func List(c *gin.Context) {
 
 func Upload(c *gin.Context) {
 	image := c.PostForm("image")
+	fmt.Println(image)
 	ID, _ := strconv.Atoi(c.PostForm("paintingId"))
 	painting := model.Painting{
 		Image: image,
