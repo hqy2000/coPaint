@@ -2,6 +2,7 @@ package route
 
 import (
 	"coPaint/config"
+	"coPaint/model"
 	"github.com/gin-gonic/gin"
 
 )
@@ -18,4 +19,14 @@ func List(c *gin.Context) {
 		"code": 200,
 		"data": config.Paintings,
 	})
+}
+
+func Upload(c *gin.Context) {
+	image := c.PostForm("image")
+	painting := model.Painting{
+		ID: 2,
+		Name: "lang.java.NullPointerException",
+		Image: image,
+	}
+	config.Paintings = append(config.Paintings, painting)
 }

@@ -9,6 +9,7 @@ func main() {
 	r := gin.Default()
 	r.GET("/", route.Default)
 	r.GET("/paintings/list", route.List)
+	r.POST("/paintings/upload", route.Upload)
 	r.GET("/ws", route.WebSocket)
 	r.Run()
 }
