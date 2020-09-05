@@ -12,7 +12,7 @@ type Request struct {
 
 type RoomRequest struct {
 	Operation string `json:"operation"`
-	RoomID int `json:"roomId"`
+	ID int `json:"Id"`
 }
 
 type Event struct {
@@ -22,4 +22,9 @@ type Event struct {
 
 type HeartBeat struct {
 	HeartBeatID uint16 `json:"heartBeatId"`
+}
+
+type Error struct {
+	Code int `json:"code"`
+	Msg string `json:"msg"`
 }

@@ -19,7 +19,3 @@ func List(c *gin.Context) {
 		"data": config.Paintings,
 	})
 }
-
-func Login(c *gin.Context) {
-
-}

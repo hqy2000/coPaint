@@ -4,7 +4,7 @@ import "github.com/gorilla/websocket"
 
 type Room struct {
 	ID uint `json:"id"`
-	Painting Painting `json:"painting"`
+	PaintingID int `json:"paintingId"`
 	Users []User `json:"users"`
 	Touches []Touch `json:"touches"`
 }
