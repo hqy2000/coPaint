@@ -113,9 +113,7 @@ func ws(w http.ResponseWriter, r *http.Request) {
 				} else {
 					user.InRoom.Touches = append(user.InRoom.Touches, touch)
 					for _, u := range user.InRoom.Users {
-						if user.InRoom.ID == u.InRoom.ID {
-							u.Device.WriteJSON(touch)
-						}
+						u.Device.WriteJSON(touch)
 					}
 				}
 
