@@ -66,7 +66,7 @@ func ws(w http.ResponseWriter, r *http.Request) {
 				switch roomRequest.Operation {
 				case "join":
 					room := config.Rooms[uint16(roomRequest.ID)]
-					if room.ID != 0 {
+					if room != nil {
 						user.InRoom = room
 						room.Users = append(room.Users, user)
 						conn.WriteJSON(model.RoomResponse{
@@ -74,8 +74,11 @@ func ws(w http.ResponseWriter, r *http.Request) {
 							Status: "join_success",
 						})
 					} else {
-						conn.WriteJSON(model.Error{
-							404, "room_not_found",
+						conn.WriteJSON(model.RoomResponse{
+							Room: model.Room{
+								ID: 0,
+							},
+							Status: "join_success",
 						})
 					}
 					break
