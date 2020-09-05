@@ -26,7 +26,7 @@ func filter(vs []model.Painting, f func(model.Painting) bool) []model.Painting {
 }
 
 func List(c *gin.Context) {
-	ID, _ := strconv.Atoi(c.Param("paintingId"))
+	ID, _ := strconv.Atoi(c.Query("paintingId"))
 	fmt.Println(ID)
 
 	c.JSON(200, gin.H{
