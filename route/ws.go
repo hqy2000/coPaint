@@ -73,6 +73,10 @@ func ws(w http.ResponseWriter, r *http.Request) {
 							Room: *room,
 							Status: "join_success",
 						})
+					} else {
+						conn.WriteJSON(model.Error{
+							404, "room_not_found",
+						})
 					}
 					break
 				case "create":

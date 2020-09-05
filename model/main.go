@@ -29,5 +29,5 @@ type User struct {
 type Painting struct {
 	ID uint8 `json:"id"`
 	Name string `json:"name"`
-	Image string `json:"-"`
+	Image string `json:"image"`
 }
